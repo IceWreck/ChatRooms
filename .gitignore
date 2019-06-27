@@ -1,3 +1,5 @@
 venv
 .idea
 .vscode
+flask_session
+__pycache__
