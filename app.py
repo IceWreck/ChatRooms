@@ -10,4 +10,14 @@ socketio = SocketIO(app)
 
 @app.route("/")
 def index():
-    return render_template('sample.html')
+    return redirect('/chat')
+
+
+@app.route("/chat")
+def chat():
+    return render_template("/sample.html")
+
+@socketio.on("client_emit")
+def message(message_data):
+    message_text = message_data["text"]
+    emit("server_emit", {"text": message_text}, broadcast=True)
