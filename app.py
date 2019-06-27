@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask
+from flask import Flask, flash, jsonify, redirect, render_template, request, session
 from flask_socketio import SocketIO, emit
 
 app = Flask(__name__)
@@ -10,4 +10,4 @@ socketio = SocketIO(app)
 
 @app.route("/")
 def index():
-    return "ChatRooms"
+    return render_template('sample.html')

@@ -1,0 +1,28 @@
+# Holds code thats been removed but may come handy in the future
+
+## Only displayif logged in
+
+
+                    {% if session.user_id %}
+                    <li>
+                        <a class="nav-link" href="/">
+                            <p>Overview</p>
+                        </a>
+                    </li>
+                    
+
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="/logout">
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                    {% else %}
+
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="/login">
+                            <p>Login</p>
+                        </a>
+                    </li>
+
+                    {% endif%}
+
