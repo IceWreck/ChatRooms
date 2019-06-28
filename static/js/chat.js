@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    // Chat Functionality
+    // ---------------------------------------//    
     // Connect to a websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
 
@@ -20,5 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
         const li = document.createElement('li');
         li.innerHTML = `Wow: ${message_data.text}`;
         document.querySelector('#chat').append(li);
+    });
+
+    // ---------------------------------------// 
+    // Other Tools
+    
+    // Send message on pressing enter 
+    document.querySelector("#input_message").addEventListener("keyup", () => {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.querySelector("#send_message").click();
+        }
     });
 });
