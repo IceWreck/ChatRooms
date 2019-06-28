@@ -19,8 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add message to page
     socket.on('server_emit', message_data => {
         const li = document.createElement('li');
-        li.innerHTML = `Wow: ${message_data.text}`;
+        li.className = 'list-group-item'
+        li.innerHTML = `${message_data.text}`;
         document.querySelector('#chat').append(li);
+        // scroll to bottom of page
+        document.querySelector('#bottom-chat').scrollIntoView();
     });
 
     // ---------------------------------------// 
@@ -33,4 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector("#send_message").click();
         }
     });
+
+    
 });

@@ -26,3 +26,18 @@
 
                     {% endif%}
 
+
+
+
+
+
+<!--
+<div class="form-group">
+    <input type="text" class="form-control" id="input_message" placeholder="Message" />
+    <br>
+    <button id="send_message" class="btn btn-danger" button>Send Message</button>
+</div>
+--->
+
+                        
+                        
