@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Connect to a websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-    let channel_name = "lounge"
+    let channel_name = "lounge";
 
     
 
@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     *
     * There are two types of json emissions,
     * client_emit is the json emitted by javascript on the client's browser (in chat.js)
-    * server_emit is the json emitted by python in app.py
+    * server_emit is the json emitted by python on the server (in app.py)
     * 
     */
 
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // display message only if message's channel matches selected channel
         if (channel_name === message_data.channel) {
             const li = document.createElement('li');
-            li.className = 'list-group-item'
+            li.className = 'list-group-item';
             li.innerHTML = `${message_data.text}`;
             document.querySelector('#chat').append(li);
             // scroll to bottom of page
@@ -59,9 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Watch for channel change
-
-    document.querySelector("").addEventListener.onclick = () => {
-
-    }
+    // TODO: convert this jquery syntax to pure JS
+    $('#channel-list button').on('click', function(){
+        channel_name = this.value;
+        document.querySelector("#channel-name").innerHTML=channel_name;
+        // remove messages from previous channel
+        document.querySelector('#chat').innerHTML = "";
+    });
 
 });
