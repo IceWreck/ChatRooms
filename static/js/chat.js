@@ -1,21 +1,28 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Chat Functionality
+    // Init
     // ---------------------------------------//    
-    
+
     // Connect to a websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
-    let channel_name = "lounge";
 
-    
+    // Set a default channel if last used channel doesn't exist and connect to it
+    if (!localStorage.getItem("channel_name")) {
+        localStorage.setItem("channel_name", 'Lounge');
+    }
+    let channel_name = localStorage.getItem("channel_name");
+    document.querySelector("#channel-name").innerHTML = channel_name;
+
+    // Chat Functionality
+    // ---------------------------------------//
 
     /*
-    *
-    * There are two types of json emissions,
-    * client_emit is the json emitted by javascript on the client's browser (in chat.js)
-    * server_emit is the json emitted by python on the server (in app.py)
-    * 
-    */
+     *
+     * There are two types of json emissions,
+     * client_emit is the json emitted by javascript on the client's browser (in chat.js)
+     * server_emit is the json emitted by python on the server (in app.py)
+     *
+     */
 
     // Implement send_message functionality
     socket.on('connect', () => {
@@ -27,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'text': message_text,
                 'channel': channel_name
             });
-            // clear its value 
+            // clear its value
             document.querySelector('#input_message').value = "";
         };
     });
@@ -48,9 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Other Tools
     // ---------------------------------------// 
-    
 
-    // Send message on pressing enter 
+
+    // Send message on pressing enter
     document.querySelector("#input_message").addEventListener("keyup", () => {
         event.preventDefault();
         if (event.keyCode === 13) {
@@ -60,11 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Watch for channel change
     // TODO: convert this jquery syntax to pure JS
-    $('#channel-list button').on('click', function(){
+    $('#channel-list button').on('click', function () {
         channel_name = this.value;
-        document.querySelector("#channel-name").innerHTML=channel_name;
+        document.querySelector("#channel-name").innerHTML = channel_name;
         // remove messages from previous channel
         document.querySelector('#chat').innerHTML = "";
+        // save this to local storage
+        localStorage.setItem("channel_name", channel_name);
     });
 
 });

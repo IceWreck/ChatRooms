@@ -15,7 +15,7 @@ def index():
 
 @app.route("/chat")
 def chat():
-    return render_template("/sample.html")
+    return render_template("/chat.html")
 
 @socketio.on("client_emit")
 def message(message_data):
