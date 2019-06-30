@@ -1,8 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     // Chat Functionality
     // ---------------------------------------//    
+    
     // Connect to a websocket
     var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port);
+    let channel_name = "lounge"
+
+    
+
+    /*
+    *
+    * There are two types of json emissions,
+    * client_emit is the json emitted by javascript on the client's browser (in chat.js)
+    * server_emit is the json emitted by python in app.py
+    * 
+    */
 
     // Implement send_message functionality
     socket.on('connect', () => {
@@ -10,25 +23,33 @@ document.addEventListener('DOMContentLoaded', () => {
         // Send message to server
         document.querySelector('#send_message').onclick = () => {
             message_text = document.querySelector('#input_message').value;
-            socket.emit('client_emit', {'text': message_text});
+            socket.emit('client_emit', {
+                'text': message_text,
+                'channel': channel_name
+            });
             // clear its value 
             document.querySelector('#input_message').value = "";
         };
     });
 
-    // Add message to page
+    // Receive from server_emit and add message to page
     socket.on('server_emit', message_data => {
-        const li = document.createElement('li');
-        li.className = 'list-group-item'
-        li.innerHTML = `${message_data.text}`;
-        document.querySelector('#chat').append(li);
-        // scroll to bottom of page
-        document.querySelector('#bottom-chat').scrollIntoView();
+        // display message only if message's channel matches selected channel
+        if (channel_name === message_data.channel) {
+            const li = document.createElement('li');
+            li.className = 'list-group-item'
+            li.innerHTML = `${message_data.text}`;
+            document.querySelector('#chat').append(li);
+            // scroll to bottom of page
+            document.querySelector('#bottom-chat').scrollIntoView();
+        }
     });
 
-    // ---------------------------------------// 
+
     // Other Tools
+    // ---------------------------------------// 
     
+
     // Send message on pressing enter 
     document.querySelector("#input_message").addEventListener("keyup", () => {
         event.preventDefault();
@@ -37,5 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    
+    // Watch for channel change
+
+    document.querySelector("").addEventListener.onclick = () => {
+
+    }
+
 });

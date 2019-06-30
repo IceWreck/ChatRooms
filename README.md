@@ -2,5 +2,6 @@
 
 Work In Progress
 
-## Immidiate TODO
-* Make it so that messages are sent via the enter key as well
+## TODO:
+* multiple channels via js
+* user authentication and user profiles

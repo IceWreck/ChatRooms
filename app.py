@@ -20,4 +20,6 @@ def chat():
 @socketio.on("client_emit")
 def message(message_data):
     message_text = message_data["text"]
-    emit("server_emit", {"text": message_text}, broadcast=True)
+    message_channel =message_data["channel"]
+    # send the message back to the channel it came from
+    emit("server_emit", {"text": message_text, "channel":message_channel}, broadcast=True)
