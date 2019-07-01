@@ -46,5 +46,3 @@ document.querySelector("#channel-list > button").addEventListener.onclick = () =
         //alert(this.value);
     };
 
-
-    fgf
