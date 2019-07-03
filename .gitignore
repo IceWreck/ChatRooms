@@ -4,3 +4,4 @@ venv
 flask_session
 __pycache__
 docs.md
+keys.txt

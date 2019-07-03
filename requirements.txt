@@ -1,8 +1,5 @@
 Flask
 Flask-SocketIO
 gunicorn
-<<<<<<< HEAD
 eventlet
-=======
-eventlet
->>>>>>> 5b80fc99ffd68359691f1c0fe1eb05a4973dedcc
+flask_sqlalchemy
