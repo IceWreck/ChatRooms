@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (channel_name === message_data.channel) {
             const li = document.createElement('li');
             li.className = 'list-group-item';
-            li.innerHTML = `${message_data.text}`;
+            li.innerHTML = `${message_data.sender}: ${message_data.text}`;
             document.querySelector('#chat').append(li);
             // scroll to bottom of page
             document.querySelector('#bottom-chat').scrollIntoView();

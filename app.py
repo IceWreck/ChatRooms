@@ -65,6 +65,8 @@ def register():
         # Now that the user is in the db, log them in
         user_in_db = Users.query.filter_by(name=username).first()
         session["user_id"] = user_in_db.id
+        session["name"] = user_in_db.name
+
         # Redirect user to home
         return redirect("/")
 
@@ -91,11 +93,13 @@ def login():
         username = request.form.get("username")
         password = request.form.get("password")
         
+        
         # Log them in
         user_in_db = Users.query.filter_by(name=username).first()
         if not user_in_db or not check_password_hash(user_in_db.password, password):
             return "Invalid user/pass"
         session["user_id"] = user_in_db.id
+        session["name"] = user_in_db.name
 
         # Redirect user to home
         return redirect("/")
@@ -112,6 +116,7 @@ def chat():
 @socketio.on("client_emit")
 def message(message_data):
     message_text = message_data["text"]
-    message_channel =message_data["channel"]
+    message_channel = message_data["channel"]
+    message_sender = session.get("name")
     # send the message back to the channel it came from
-    emit("server_emit", {"text": message_text, "channel":message_channel}, broadcast=True)
+    emit("server_emit", {"text": message_text, "channel":message_channel, "sender":message_sender}, broadcast=True)
