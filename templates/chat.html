@@ -12,6 +12,30 @@ ChatRoom
 {% block main %}
 
 <h3 id="channel-name">Channel</h3>
+
+<!-- New Channel Modal -->
+<div class="modal fade" id="newChannel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New Channel</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" class="form-control" id="new-channel-name" placeholder="channelName" />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" id="save-channel" class="btn btn-danger">Add Channel</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+
+
 <div class="col-md-3 dropdown">
     <a href="#" class="btn dropdown-toggle" data-toggle="dropdown">
         Choose Channel
@@ -21,8 +45,10 @@ ChatRoom
         <li class="divider"></li>
         <button class="dropdown-item" value="Lounge" id="Lounge" type="button">#lounge</button>
         <button class="dropdown-item" value="Tech" id="Tech" type="button">#tech</button>
+        <button class="dropdown-item" value="LifeStyle" id="LifeStyle" type="button">#lifestyle</button>
+        <button class="dropdown-item" value="Entertainment" id="entertainment" type="button">#entertainment</button>
 
-        <li class="divider"></li>
+        
     </ul>
 </div>
 <br>

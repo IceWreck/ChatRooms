@@ -65,9 +65,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Add Channel
+
+    document.querySelector('#save-channel').onclick = () => {
+        channel_name = document.querySelector('#new-channel-name').value;
+        const btn = document.createElement('button');
+        btn.className = 'dropdown-item';
+        btn.id = channel_name.toLowerCase();
+        btn.value = channel_name.toLowerCase();
+        btn.type = "button";
+        btn.innerHTML = "#" + channel_name;
+        document.querySelector('#channel-list').append(btn);
+        $('#newChannel').modal('hide');
+    };
+
     // Watch for channel change
     // TODO: convert this jquery syntax to pure JS
-    $('#channel-list button').on('click', function () {
+    $(document).on('click', '#channel-list button', function () {
+        console.log("clicked");
         channel_name = this.value;
         document.querySelector("#channel-name").innerHTML = channel_name;
         // remove messages from previous channel
