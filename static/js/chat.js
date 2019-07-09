@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $(document).on('click', '#channel-list button', function () {
         console.log("clicked");
         channel_name = this.value;
-        document.querySelector("#channel-name").innerHTML = channel_name;
+        document.querySelector("#channel-name").innerHTML = "#" + channel_name;
         // remove messages from previous channel
         document.querySelector('#chat').innerHTML = "";
         // save this to local storage
