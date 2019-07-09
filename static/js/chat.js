@@ -8,10 +8,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Set a default channel if last used channel doesn't exist and connect to it
     if (!localStorage.getItem("channel_name")) {
-        localStorage.setItem("channel_name", 'Lounge');
+        localStorage.setItem("channel_name", 'lounge');
     }
     let channel_name = localStorage.getItem("channel_name");
-    document.querySelector("#channel-name").innerHTML = channel_name;
+    document.querySelector("#channel-name").innerHTML = "#" + channel_name;
 
     // Chat Functionality
     // ---------------------------------------//

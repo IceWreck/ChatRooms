@@ -29,6 +29,11 @@ Session(app)
 def index():
     return redirect('/chat')
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect('/')
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     # Forget existing user sessions
@@ -107,6 +112,8 @@ def login():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("loginpage.html")
+
+
 
 @app.route("/chat")
 @login_required

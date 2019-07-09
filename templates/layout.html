@@ -12,7 +12,7 @@
     <!--
         Meta Tag for stopping search engines from indexing this app.
         REMOVE IF YOU WANT YOUR CHAT APP TO APPEAR IN GOOGLE/DDG/ETC
-    -->    
+    -->
     <META NAME=”ROBOTS” CONTENT=”NOINDEX, FOLLOW”>
     <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
@@ -21,7 +21,8 @@
     <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../static/css/light-bootstrap-dashboard.css?v=2.0.0 " rel="stylesheet" />
     <link rel="stylesheet" href="../static/css/chat.css">
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js">
+    </script>
 
 </head>
 
@@ -36,6 +37,7 @@
                     </a>
                 </div>
                 <ul class="nav">
+                    {% if session.user_id %}
                     <li>
                         <a class="nav-link" href="/chat">
                             <p>CHAT</p>
@@ -46,11 +48,25 @@
                             <p>NEW CHANNEL</p>
                         </a>
                     </li>
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="/logout">
+                            <p>Logout</p>
+                        </a>
+                    </li>
+                    {% else %}
 
-                
+                    <li class="nav-item active active-pro">
+                        <a class="nav-link active" href="/login">
+                            <p>Login</p>
+                        </a>
+                    </li>
+
+                    {% endif%}
+
+
                 </ul>
 
-                
+
 
 
             </div>
