@@ -1,6 +1,6 @@
 # ChatRooms
 
-![abifog-chatrooms]('/screenshots/abifog-chatrooms.png')
+![abifog-chatrooms](screenshots/abifog-chatrooms.png)
 
 ## Stack
 * Flask
